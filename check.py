@@ -5,7 +5,7 @@ STATE = "last_id.txt"
 
 def match(text):
     t = text.lower()
-    return "#spotify" in t and ("尼日利亚" in text or "🇳🇬" in text)
+    return "spotify" in t
 
 def fetch(url):
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
