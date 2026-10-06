@@ -29,7 +29,7 @@ def push(pid, text):
     url = "https://api.day.app/%s/%s/%s?%s" % (
         key, urllib.parse.quote(title, safe=""), urllib.parse.quote(body, safe=""),
         urllib.parse.urlencode({"url": "https://t.me/%s/%d" % (CHANNEL, pid),
-                                "level": "timeSensitive", "group": "hezu2"}))
+                                "level": "timeSensitive", "group": "hezu2", "sound": "minuet"}))
     print(urllib.request.urlopen(url, timeout=30).read().decode())
 
 test = os.environ.get("TEST_POST", "").strip()
