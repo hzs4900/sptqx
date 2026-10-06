@@ -1,0 +1,26 @@
+name: check
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    inputs:
+      test_post:
+        description: "测试用帖子编号（留空=正常运行）"
+        required: false
+permissions:
+  contents: write
+concurrency: check
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 check.py
+        env:
+          BARK_KEY: ${{ secrets.BARK_KEY }}
+          TEST_POST: ${{ github.event.inputs.test_post }}
+      - run: |
+          git config user.name bot
+          git config user.email bot@users.noreply.github.com
+          git add last_id.txt
+          git diff --cached --quiet || (git commit -m "update last_id" && git push)
