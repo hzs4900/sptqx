@@ -24,7 +24,7 @@ def posts(page):
 
 def push(pid, text):
     key = os.environ["BARK_KEY"].strip()
-    title = "hezu2：Spotify 尼日利亚"
+    title = "hezu2：Spotify"
     body = text[:300]
     url = "https://api.day.app/%s/%s/%s?%s" % (
         key, urllib.parse.quote(title, safe=""), urllib.parse.quote(body, safe=""),
